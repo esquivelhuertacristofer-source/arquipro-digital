@@ -18,15 +18,14 @@
 
 const ARQUIPRO_CONFIG = {
     // Supabase → Settings → API → Project URL
-    SUPABASE_URL: "https://your-supabase-project.supabase.co",
+    SUPABASE_URL: "https://aqpbqoeccngqmsibohsc.supabase.co",
 
     // Supabase → Settings → API → anon public key
-    SUPABASE_ANON_KEY: "YOUR_SUPABASE_ANON_KEY_PLACEHOLDER",
+    SUPABASE_ANON_KEY: "sb_publishable_yBcxP_BkIG1_VXhttPRx4A_Jz4lRqQy",
 
     // Supabase → Edge Functions → create-preference → URL
-    // Formato: https://YOUR_PROJECT_REF.supabase.co/functions/v1/create-preference
     // Dejar vacío = modo demo interactivo (sin pagos reales)
-    BACKEND_PREFERENCE_URL: "",
+    BACKEND_PREFERENCE_URL: "https://aqpbqoeccngqmsibohsc.supabase.co/functions/v1/create-preference",
 
     // Soporte WhatsApp — formato internacional sin + ni espacios
     WHATSAPP_NUMBER: "525512345678",
