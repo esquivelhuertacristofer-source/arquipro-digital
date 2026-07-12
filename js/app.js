@@ -541,12 +541,19 @@ async function handleCheckoutSubmit(e) {
 
     // Crear orden en DB (demo: localStorage / producción: Supabase)
     // external_reference = orderId para poder reconciliar el pago en pago-exitoso.html
-    const { orderId } = await ArquiProDB.orders.create(
-        targetUserId,
-        selectedProductForCheckout.id,
-        selectedProductForCheckout.name,
-        selectedProductForCheckout.price
-    );
+    let orderId;
+    try {
+        const result = await ArquiProDB.orders.create(
+            targetUserId,
+            selectedProductForCheckout.id,
+            selectedProductForCheckout.name,
+            selectedProductForCheckout.price
+        );
+        orderId = result.orderId;
+    } catch (dbErr) {
+        console.warn("Order pre-creation failed, using local reference:", dbErr.message);
+        orderId = "AQ-" + Math.floor(10000 + Math.random() * 90000);
+    }
 
     // Comprobar si estamos en Modo Demo
     if (typeof ARQUIPRO_CONFIG !== 'undefined' && ARQUIPRO_CONFIG.isDemoMode()) {
