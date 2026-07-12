@@ -2611,7 +2611,7 @@ input, button, select, textarea {
     border: 1px solid var(--border-color-dark);
     box-shadow: var(--shadow-lg);
     border-radius: var(--radius-lg);
-    z-index: 1200;
+    z-index: 1400;
     opacity: 0;
     pointer-events: none;
     transition: all var(--transition-normal);
