@@ -28,7 +28,7 @@ const ARQUIPRO_CONFIG = {
     BACKEND_PREFERENCE_URL: "https://aqpbqoeccngqmsibohsc.supabase.co/functions/v1/create-preference",
 
     // Soporte WhatsApp — formato internacional sin + ni espacios
-    WHATSAPP_NUMBER: "525512345678",
+    WHATSAPP_NUMBER: "5215520869631",
     WHATSAPP_MESSAGE: "Hola, necesito ayuda con mi compra en ArquiPro Digital. Vengo de la tienda en línea.",
 
     isDemoMode: function() {
