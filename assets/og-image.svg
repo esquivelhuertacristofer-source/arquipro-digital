@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A111A"/>
+      <stop offset="100%" stop-color="#0D1B2A"/>
+    </linearGradient>
+    <pattern id="gridPat" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2596BE" stroke-width="0.5" opacity="0.12"/>
+    </pattern>
+    <linearGradient id="fadeRight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="55%" stop-color="#0A111A" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0A111A" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#gridPat)"/>
+
+  <!-- Right: Blueprint building illustration -->
+  <g opacity="0.18" transform="translate(740,60)">
+    <!-- Building body -->
+    <rect x="40" y="130" width="380" height="400" fill="none" stroke="#2596BE" stroke-width="2"/>
+    <!-- Floor dividers -->
+    <line x1="40" y1="230" x2="420" y2="230" stroke="#2596BE" stroke-width="1"/>
+    <line x1="40" y1="330" x2="420" y2="330" stroke="#2596BE" stroke-width="1"/>
+    <line x1="40" y1="430" x2="420" y2="430" stroke="#2596BE" stroke-width="1"/>
+    <!-- Column dividers -->
+    <line x1="165" y1="130" x2="165" y2="530" stroke="#2596BE" stroke-width="1"/>
+    <line x1="295" y1="130" x2="295" y2="530" stroke="#2596BE" stroke-width="1"/>
+    <!-- Roof peak -->
+    <polygon points="230,30 420,130 40,130" fill="none" stroke="#F2931E" stroke-width="2.5"/>
+    <!-- Windows row 1 -->
+    <rect x="60" y="150" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <rect x="185" y="150" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <rect x="315" y="150" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <!-- Windows row 2 -->
+    <rect x="60" y="250" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <rect x="185" y="250" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <rect x="315" y="250" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <!-- Windows row 3 -->
+    <rect x="60" y="350" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <rect x="185" y="350" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <rect x="315" y="350" width="80" height="55" fill="none" stroke="#2596BE" stroke-width="1.5"/>
+    <!-- Door -->
+    <rect x="180" y="430" width="100" height="100" fill="none" stroke="#F2931E" stroke-width="2"/>
+    <!-- Dimension lines -->
+    <line x1="-10" y1="130" x2="-10" y2="530" stroke="#2596BE" stroke-width="1" stroke-dasharray="4,3"/>
+    <line x1="-20" y1="130" x2="0" y2="130" stroke="#2596BE" stroke-width="1"/>
+    <line x1="-20" y1="530" x2="0" y2="530" stroke="#2596BE" stroke-width="1"/>
+  </g>
+
+  <!-- Gradient fade to blend building into background -->
+  <rect width="1200" height="630" fill="url(#fadeRight)"/>
+
+  <!-- Left accent stripe -->
+  <rect x="0" y="0" width="5" height="630" fill="#2596BE"/>
+
+  <!-- Logo icon: architectural A -->
+  <g transform="translate(58,52)">
+    <polygon points="0,52 12,6 19,6 8,52" fill="#2596BE"/>
+    <polygon points="52,52 40,6 33,6 44,52" fill="#2596BE"/>
+    <rect x="11" y="27" width="30" height="6" fill="#F2931E"/>
+  </g>
+
+  <!-- Brand wordmark -->
+  <text x="128" y="88" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="38" letter-spacing="3" fill="#FFFFFF">ARQUI<tspan fill="#2596BE">PRO</tspan></text>
+  <text x="130" y="112" font-family="Arial,sans-serif" font-weight="400" font-size="13" letter-spacing="8" fill="#5A7080">DIGITAL</text>
+
+  <!-- Divider -->
+  <line x1="58" y1="148" x2="440" y2="148" stroke="rgba(37,150,190,0.25)" stroke-width="1"/>
+
+  <!-- Main headline -->
+  <text x="58" y="225" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="54" fill="#FFFFFF">Archivos y Plantillas</text>
+  <text x="58" y="295" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="54" fill="#2596BE">Listas para usar</text>
+  <text x="58" y="360" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="54" fill="#FFFFFF">en tus Proyectos</text>
+
+  <!-- Tagline -->
+  <text x="58" y="410" font-family="Arial,sans-serif" font-size="20" fill="#5A7080">Recursos digitales para Arquitectura e Ingeniería · Descarga inmediata</text>
+
+  <!-- Category chips -->
+  <rect x="58" y="438" width="148" height="36" rx="18" fill="rgba(37,150,190,0.12)" stroke="rgba(37,150,190,0.38)" stroke-width="1.5"/>
+  <text x="132" y="462" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#2596BE" text-anchor="middle">AutoCAD</text>
+
+  <rect x="218" y="438" width="130" height="36" rx="18" fill="rgba(37,150,190,0.12)" stroke="rgba(37,150,190,0.38)" stroke-width="1.5"/>
+  <text x="283" y="462" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#2596BE" text-anchor="middle">Revit BIM</text>
+
+  <rect x="360" y="438" width="100" height="36" rx="18" fill="rgba(37,150,190,0.12)" stroke="rgba(37,150,190,0.38)" stroke-width="1.5"/>
+  <text x="410" y="462" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#2596BE" text-anchor="middle">Excel</text>
+
+  <rect x="472" y="438" width="148" height="36" rx="18" fill="rgba(37,150,190,0.12)" stroke="rgba(37,150,190,0.38)" stroke-width="1.5"/>
+  <text x="546" y="462" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#2596BE" text-anchor="middle">Texturas 3D</text>
+
+  <!-- Bottom stats bar -->
+  <line x1="58" y1="502" x2="680" y2="502" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+  <text x="58" y="538" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="28" fill="#FFFFFF">15k+</text>
+  <text x="58" y="560" font-family="Arial,sans-serif" font-size="13" fill="#5A7080">Descargas</text>
+
+  <text x="195" y="538" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="28" fill="#FFFFFF">800+</text>
+  <text x="195" y="560" font-family="Arial,sans-serif" font-size="13" fill="#5A7080">Recursos</text>
+
+  <text x="335" y="538" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="28" fill="#FFFFFF">98%</text>
+  <text x="335" y="560" font-family="Arial,sans-serif" font-size="13" fill="#5A7080">Satisfacción</text>
+
+  <!-- URL / handle -->
+  <text x="490" y="548" font-family="Arial,sans-serif" font-size="17" fill="#2596BE" font-weight="600">arquipro.digital</text>
+</svg>

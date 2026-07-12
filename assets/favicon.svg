@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0A111A"/>
+  <!-- Stylized architectural "A" — two pillars + crossbar -->
+  <polygon points="4,27 10,5 13.5,5 8,27" fill="#2596BE"/>
+  <polygon points="28,27 22,5 18.5,5 24,27" fill="#2596BE"/>
+  <rect x="9" y="16.5" width="14" height="3.5" fill="#F2931E"/>
+</svg>
