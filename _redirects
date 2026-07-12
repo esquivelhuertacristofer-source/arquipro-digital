@@ -1,0 +1,3 @@
+# Cloudflare Pages — Redirects
+# Páginas de error de pago redirigen al inicio
+/pago-cancelado   /pago-fallido.html  302

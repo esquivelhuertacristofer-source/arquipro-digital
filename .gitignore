@@ -1,0 +1,20 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Variables de entorno — NUNCA subir credenciales reales
+.env
+.env.local
+.env.production
+
+# Dependencias (si se agregan en el futuro)
+node_modules/
+
+# Supabase CLI local
+.supabase/
+supabase/.branches/
+supabase/.temp/

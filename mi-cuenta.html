@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta | ARQUIPRO DIGITAL</title>
+    <meta name="description" content="Administra tus descargas de bloques de AutoCAD, Revit y formatos de Excel comprados.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Header Navigation (Simple for Dashboard) -->
+    <header class="main-header scrolled">
+        <div class="header-container">
+            <!-- Brand Logo -->
+            <a href="index.html" class="brand-logo">
+                <img src="assets/logo.png" alt="ArquiPro Digital" class="brand-logo-img">
+            </a>
+
+            <div class="header-actions">
+                <a href="index.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-store"></i> Volver a la Tienda</a>
+                <button type="button" class="btn-logout" id="dashboard-logout-btn" title="Cerrar Sesión"><i class="fa-solid fa-power-off"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="dashboard-container container section-padding">
+        
+        <!-- Demo Warning Banner if active -->
+        <div class="checkout-auth-alert" id="demo-banner" style="display: none; background-color: rgba(242, 147, 30, 0.08); border-color: rgba(242, 147, 30, 0.25); margin-bottom: 2rem;">
+            <p style="color: #f2931e; text-align: center;"><i class="fa-solid fa-circle-exclamation"></i> <strong>Modo Demo Activo</strong>: Los datos de perfil e historial se persisten en este navegador. Vincula tu base de datos Supabase en `js/config.js` para almacenamiento en la nube.</p>
+        </div>
+
+        <!-- Welcome banner -->
+        <div class="db-welcome-banner">
+            <div class="db-welcome-text">
+                <h1>Hola, <span id="db-user-name">Usuario</span></h1>
+                <p>Bienvenido a tu panel de control profesional de ArquiPro Digital.</p>
+            </div>
+            <div class="db-welcome-badge">
+                <span class="badge"><i class="fa-solid fa-shield-halved text-primary"></i> Cliente VIP</span>
+            </div>
+        </div>
+
+        <div class="db-layout-grid">
+            <!-- Sidebar Navigation -->
+            <aside class="db-sidebar">
+                <div class="db-user-card">
+                    <div class="db-user-avatar">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h3 id="db-user-sidebar-name">Usuario</h3>
+                    <p id="db-user-sidebar-email">correo@ejemplo.com</p>
+                </div>
+                <nav class="db-menu">
+                    <button type="button" class="db-menu-btn active" data-tab="downloads">
+                        <i class="fa-solid fa-cloud-arrow-down"></i> Mis Descargas
+                    </button>
+                    <button type="button" class="db-menu-btn" data-tab="history">
+                        <i class="fa-solid fa-file-invoice-dollar"></i> Historial de Compras
+                    </button>
+                    <button type="button" class="db-menu-btn" data-tab="profile">
+                        <i class="fa-solid fa-id-card"></i> Mi Perfil
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <section class="db-content-panel">
+                
+                <!-- TAB: MIS DESCARGAS -->
+                <div class="db-tab-content active" id="tab-downloads">
+                    <div class="panel-section-header">
+                        <h2>Recursos Adquiridos</h2>
+                        <p>Descarga tus librerías y plantillas profesionales. Enlaces seguros y actualizados.</p>
+                    </div>
+                    
+                    <div class="downloads-grid" id="db-downloads-grid">
+                        <!-- Loaded dynamically -->
+                    </div>
+
+                    <div class="empty-tab-state" id="db-downloads-empty" style="display: none;">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                        <h3>Aún no has adquirido recursos</h3>
+                        <p>Explora nuestra tienda de bloques de AutoCAD, Revit y formatos de Excel en la tienda principal.</p>
+                        <a href="index.html#catalog" class="btn btn-primary">Ir a la Tienda</a>
+                    </div>
+                </div>
+
+                <!-- TAB: HISTORIAL DE COMPRAS -->
+                <div class="db-tab-content" id="tab-history">
+                    <div class="panel-section-header">
+                        <h2>Historial de Compras</h2>
+                        <p>Listado de transacciones procesadas mediante Mercado Pago.</p>
+                    </div>
+
+                    <div class="table-responsive" id="db-history-table-wrapper">
+                        <table class="db-history-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Pedido</th>
+                                    <th>Fecha</th>
+                                    <th>Recurso Adquirido</th>
+                                    <th>Total Pagado</th>
+                                    <th>Estado Pago</th>
+                                </tr>
+                            </thead>
+                            <tbody id="db-history-tbody">
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="empty-tab-state" id="db-history-empty" style="display: none;">
+                        <i class="fa-solid fa-receipt"></i>
+                        <h3>No hay transacciones registradas</h3>
+                        <p>Tus compras procesadas con éxito aparecerán detalladas aquí.</p>
+                        <a href="index.html#catalog" class="btn btn-primary">Ir a la Tienda</a>
+                    </div>
+                </div>
+
+                <!-- TAB: MI PERFIL -->
+                <div class="db-tab-content" id="tab-profile">
+                    <div class="panel-section-header">
+                        <h2>Editar Información del Perfil</h2>
+                        <p>Mantén tus datos actualizados para recibir notificaciones sobre actualizaciones de tus recursos adquiridos.</p>
+                    </div>
+
+                    <form id="db-profile-form" class="db-form">
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="profile-name">Nombre Completo</label>
+                                <input type="text" id="profile-name" required placeholder="Ing. Juan Pérez">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-email">Correo Electrónico</label>
+                                <input type="email" id="profile-email" required readonly style="opacity: 0.7; cursor: not-allowed;" title="El correo electrónico no puede ser modificado.">
+                            </div>
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="profile-phone">Teléfono / WhatsApp</label>
+                                <input type="tel" id="profile-phone" placeholder="55 1234 5678">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-profession">Especialidad / Profesión</label>
+                                <select id="profile-profession">
+                                    <option value="Arquitecto">Arquitectura / Diseño Interiores</option>
+                                    <option value="Ingeniero Civil">Ingeniería Civil / Estructurista</option>
+                                    <option value="Contratista">Contratista / Supervisor de Obra</option>
+                                    <option value="Estudiante">Estudiante / Académico</option>
+                                    <option value="Otro">Otro Profesional</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-secondary" id="profile-save-btn">
+                                Guardar Cambios <i class="fa-solid fa-floppy-disk"></i>
+                            </button>
+                            <span class="save-status-msg" id="save-status-msg"></span>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer (Simple) -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 ARQUIPRO DIGITAL. Panel de cliente conectado de forma segura.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div id="whatsapp-widget-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Pago Exitoso! | ARQUIPRO DIGITAL</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="checkout-redirect-body">
+
+    <div class="redirect-card-container">
+        <!-- Brand Logo -->
+        <div class="brand-logo footer-logo redirect-logo">
+            <img src="assets/logo.png" alt="ArquiPro Digital" class="brand-logo-img">
+        </div>
+
+        <!-- Success Glassmorphic Card -->
+        <div class="glass-redirect-card success-card">
+            <div class="status-icon success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            
+            <h2>¡Pago Procesado con Éxito!</h2>
+            <p class="status-msg-subtitle">Tu transacción mediante Mercado Pago ha sido aprobada e integrada con éxito.</p>
+            
+            <!-- Account Autocreated Info Banner (If applicable) -->
+            <div class="checkout-auth-alert" id="auto-account-banner" style="display: none; background-color: rgba(37, 150, 190, 0.08); border-color: rgba(37, 150, 190, 0.25); text-align: left; margin-bottom: 2rem;">
+                <p style="color: var(--secondary);"><i class="fa-solid fa-user-check"></i> <strong>¡Cuenta Creada!</strong> Hemos registrado tu acceso con tu correo. Tu contraseña temporal de ingreso es <strong>123456</strong>. Puedes cambiarla desde tu perfil.</p>
+            </div>
+
+            <div class="receipt-details">
+                <div class="receipt-row">
+                    <span class="receipt-label">ID Transacción Mercado Pago:</span>
+                    <span class="receipt-value" id="mp-id-val">-</span>
+                </div>
+                <div class="receipt-row">
+                    <span class="receipt-label">Número de Pedido:</span>
+                    <span class="receipt-value" id="order-id-val">-</span>
+                </div>
+                <div class="receipt-row">
+                    <span class="receipt-label">Recurso Adquirido:</span>
+                    <span class="receipt-value" id="product-name-val">-</span>
+                </div>
+                <div class="receipt-row">
+                    <span class="receipt-label">Monto Total:</span>
+                    <span class="receipt-value text-primary" id="amount-val">$0.00</span>
+                </div>
+            </div>
+
+            <div class="redirect-actions">
+                <a href="mi-cuenta.html" class="btn btn-secondary btn-full">
+                    Ir a Mi Cuenta y Descargas <i class="fa-solid fa-cloud-arrow-down"></i>
+                </a>
+                <a href="index.html" class="btn btn-text btn-full">Volver a la Tienda</a>
+            </div>
+
+            <div class="redirect-card-footer">
+                <p><i class="fa-solid fa-circle-info text-primary"></i> Tu recurso ya está disponible para descarga en la pestaña "Mis Descargas" de tu panel.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        const productsList = {
+            "p-1": { name: "Mega Pack de Bloques 2D Dinámicos", price: 19.99 },
+            "p-2": { name: "Librería Máster de Familias Paramétricas", price: 29.99 },
+            "p-3": { name: "Bitácora y Plantilla de Control de Obra", price: 14.99 },
+            "p-4": { name: "Pack de Materiales PBR Hormigón & Concreto", price: 12.50 },
+            "p-5": { name: "Diseño de Zapatas y Columnas de Concreto", price: 18.99 },
+            "p-6": { name: "Plantilla Planos Municipales Normalizada", price: 12.00 },
+            "p-7": { name: "Plantilla de Proyecto Residencial BIM (LOD 300)", price: 25.00 },
+            "p-8": { name: "Generador de Números de Acero y Concreto", price: 10.50 },
+            "p-9": { name: "Detalles Constructivos de Cimentaciones", price: 15.00 },
+            "p-10": { name: "Familias MEP: Instalaciones Hidrosanitarias", price: 18.50 },
+            "p-11": { name: "Colección de Vegetación 3D para Lumion & V-Ray", price: 22.00 },
+            "p-12": { name: "Pack de Texturas de Maderas Finas y Acabados", price: 9.99 },
+            "p-mega": { name: "Mega Pack Todo en Uno ARQUIPRO MASTER", price: 49.99 }
+        };
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // external_reference = nuestro orderId interno (fijado en app.js antes de redirigir a MP)
+            // payment_id / collection_id = ID de pago asignado por MercadoPago
+            const orderId = urlParams.get("external_reference") || urlParams.get("collection_id") || ("AQ-" + Math.floor(10000 + Math.random() * 90000));
+            const mpPaymentId = urlParams.get("payment_id") || urlParams.get("collection_id") || orderId;
+
+            // El productId se guardó en localStorage justo antes de iniciar el checkout
+            const productId = localStorage.getItem("arquipro_last_pending_product") || "p-1";
+            const prod = productsList[productId] || productsList["p-1"];
+
+            // Actualizar interfaz
+            document.getElementById("mp-id-val").textContent = mpPaymentId;
+            document.getElementById("product-name-val").textContent = prod.name;
+            document.getElementById("amount-val").textContent = `$${prod.price.toFixed(2)} USD`;
+            document.getElementById("order-id-val").textContent = orderId;
+
+            // 1. Gestión de la Cuenta del Usuario (si compró como invitado)
+            let currentUser = await ArquiProDB.auth.getSession();
+            let autoCreated = false;
+
+            if (!currentUser) {
+                const tempBuyerData = localStorage.getItem("arquipro_temp_buyer");
+                if (tempBuyerData) {
+                    const buyer = JSON.parse(tempBuyerData);
+                    try {
+                        // Crear la cuenta con contraseña por defecto
+                        currentUser = await ArquiProDB.auth.signUp(buyer.email, "123456", buyer.name, buyer.phone);
+                        autoCreated = true;
+                        document.getElementById("auto-account-banner").style.display = "block";
+                    } catch (error) {
+                        console.error("No se pudo auto-crear la cuenta del usuario:", error);
+                        // Registrar sesión simulada en localStorage de forma forzada para el dashboard
+                        currentUser = buyer;
+                        localStorage.setItem("arquipro_user", JSON.stringify(buyer));
+                    }
+                    localStorage.removeItem("arquipro_temp_buyer");
+                } else {
+                    // Fallback default guest
+                    currentUser = {
+                        id: "guest-" + Math.floor(Math.random() * 100000),
+                        name: "Cliente ArquiPro",
+                        email: "cliente@arquipro.digital",
+                        phone: "",
+                        profession: "Arquitecto"
+                    };
+                    localStorage.setItem("arquipro_user", JSON.stringify(currentUser));
+                }
+            }
+
+            // 2. Conciliar compra en Supabase u Base local
+            try {
+                // Registrar compra en la DB real/simulada
+                await ArquiProDB.orders.updateStatus(orderId, 'approved', mpPaymentId);
+            } catch (err) {
+                console.error("Error updating order in database:", err);
+            }
+        });
+    </script>
+</body>
+</html>

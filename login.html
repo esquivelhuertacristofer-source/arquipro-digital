@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión | ARQUIPRO DIGITAL</title>
+    <meta name="description" content="Inicia sesión en tu cuenta de ArquiPro Digital para descargar tus recursos adquiridos.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="checkout-redirect-body">
+
+    <div class="redirect-card-container">
+        <!-- Brand Logo -->
+        <a href="index.html" class="brand-logo footer-logo redirect-logo">
+            <img src="assets/logo.png" alt="ArquiPro Digital" class="brand-logo-img">
+        </a>
+
+        <!-- Login Card -->
+        <div class="glass-redirect-card auth-standalone-card">
+            <div class="auth-form-container">
+                <h3>Iniciar Sesión</h3>
+                <p class="auth-subtitle">Ingresa a tu cuenta para administrar tus compras y descargas de recursos.</p>
+
+                <!-- Demo Mode Warning Banner -->
+                <div class="checkout-auth-alert" id="demo-banner" style="display: none; background-color: rgba(242, 147, 30, 0.08); border-color: rgba(242, 147, 30, 0.25);">
+                    <p style="color: #f2931e;"><i class="fa-solid fa-circle-exclamation"></i> <strong>Modo Demo Activo</strong>: Se usará el almacenamiento del navegador. Configura tus llaves de Supabase en `js/config.js` para producción.</p>
+                </div>
+
+                <div class="checkout-auth-alert" id="error-banner" style="display: none; background-color: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.25);">
+                    <p style="color: #ef4444;" id="error-message"><i class="fa-solid fa-circle-xmark"></i> Correo o contraseña incorrectos.</p>
+                </div>
+
+                <form id="standalone-login-form">
+                    <div class="form-group">
+                        <label for="login-email">Correo Electrónico</label>
+                        <input type="email" id="login-email" required placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Contraseña</label>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full" style="margin-top: 1.5rem;" id="login-submit-btn">
+                        Ingresar <i class="fa-solid fa-right-to-bracket"></i>
+                    </button>
+                </form>
+
+                <p class="auth-toggle-text">¿No tienes cuenta? <a href="registro.html">Crear una cuenta</a></p>
+                <div style="margin-top: 2rem; border-top: 1px solid var(--border-color-dark); padding-top: 1rem;">
+                    <a href="index.html" class="btn btn-text btn-sm"><i class="fa-solid fa-arrow-left"></i> Volver a la Tienda</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Mostrar banner si estamos en modo demo
+            if (ARQUIPRO_CONFIG.isDemoMode()) {
+                document.getElementById("demo-banner").style.display = "block";
+            }
+
+            // Redireccionar si ya hay sesión
+            const session = await ArquiProDB.auth.getSession();
+            if (session) {
+                window.location.href = "mi-cuenta.html";
+            }
+
+            const loginForm = document.getElementById("standalone-login-form");
+            const submitBtn = document.getElementById("login-submit-btn");
+            const errorBanner = document.getElementById("error-banner");
+            const errorMessage = document.getElementById("error-message");
+
+            loginForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                errorBanner.style.display = "none";
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Ingresando... <i class="fa-solid fa-spinner fa-spin"></i>';
+
+                const email = document.getElementById("login-email").value.trim();
+                const password = document.getElementById("login-password").value;
+
+                try {
+                    await ArquiProDB.auth.signIn(email, password);
+                    window.location.href = "mi-cuenta.html";
+                } catch (error) {
+                    console.error("Login error:", error);
+                    errorMessage.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${error.message || 'Error al iniciar sesión.'}`;
+                    errorBanner.style.display = "block";
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Ingresar <i class="fa-solid fa-right-to-bracket"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

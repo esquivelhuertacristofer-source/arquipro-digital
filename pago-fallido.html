@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Pago Fallido! | ARQUIPRO DIGITAL</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="checkout-redirect-body">
+
+    <div class="redirect-card-container">
+        <!-- Brand Logo -->
+        <div class="brand-logo footer-logo redirect-logo">
+            <img src="assets/logo.png" alt="ArquiPro Digital" class="brand-logo-img">
+        </div>
+
+        <!-- Failure Glassmorphic Card -->
+        <div class="glass-redirect-card failure-card">
+            <div class="status-icon failure-icon">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            
+            <h2>Transacción Rechazada / Cancelada</h2>
+            <p class="status-msg-subtitle">El proceso de pago de Mercado Pago no pudo completarse con éxito. No se ha realizado ningún cargo.</p>
+            
+            <div class="receipt-details">
+                <div class="receipt-row">
+                    <span class="receipt-label">Posibles Motivos:</span>
+                    <span class="receipt-value text-red">Fondos insuficientes, límite excedido o cancelación manual de la operación.</span>
+                </div>
+                <div class="receipt-row">
+                    <span class="receipt-label">Número de Pedido de Soporte:</span>
+                    <span class="receipt-value" id="err-order-id">AQ-58190</span>
+                </div>
+            </div>
+
+            <div class="redirect-actions">
+                <a href="index.html#catalog" class="btn btn-primary btn-full">
+                    Volver a Intentar Compra <i class="fa-solid fa-rotate-left"></i>
+                </a>
+                <a href="index.html" class="btn btn-text btn-full">Ir al Inicio de la Tienda</a>
+            </div>
+
+            <div class="redirect-card-footer">
+                <p><i class="fa-solid fa-circle-question text-primary"></i> Si consideras que se trata de un error de tu banco, por favor contáctanos en soporte@arquipro.digital indicando tu Número de Pedido de Soporte.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Intentar recuperar el ID de orden fallida
+            const orderId = urlParams.get("preference_id") || "AQ-" + Math.floor(10000 + Math.random() * 90000);
+            document.getElementById("err-order-id").textContent = orderId;
+
+            // Conciliar fallo en Supabase/local DB
+            try {
+                await ArquiProDB.orders.updateStatus(orderId, 'failed', 'MP-FAILED-TRX');
+            } catch (err) {
+                console.error("Error conciliated failure status:", err);
+            }
+        });
+    </script>
+</body>
+</html>

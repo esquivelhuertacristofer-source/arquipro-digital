@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQUIPRO DIGITAL | Archivos y Plantillas para Arquitectura e Ingeniería</title>
+    <meta name="description" content="Recursos digitales listos para usar: bloques AutoCAD, familias Revit, plantillas Excel y texturas 3D. Ahorra tiempo y mejora tus entregas. Descarga inmediata.">
+    <!-- Google Fonts: Outfit (headings) & Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-logo" id="header-logo">
+                <div class="logo-text">
+                    <span class="logo-title">ARQUI<span>PRO</span></span>
+                    <span class="logo-subtitle">DIGITAL</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#" class="nav-link active">Inicio</a></li>
+                    <li><a href="#categories" class="nav-link">Categorías</a></li>
+                    <li><a href="#bestsellers" class="nav-link">Más Vendidos</a></li>
+                    <li><a href="#promo-pack" class="nav-link">Mega Pack</a></li>
+                    <li><a href="#catalog" class="nav-link">Catálogo</a></li>
+                    <li><a href="#testimonials" class="nav-link">Opiniones</a></li>
+                </ul>
+            </nav>
+
+            <!-- Action Area (Search & Auth) -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Buscar recurso...">
+                    <button type="button" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                
+                <!-- Auth Container -->
+                <div class="header-auth" id="header-auth-container">
+                    <a href="login.html" class="btn btn-outline btn-sm" id="header-login-btn">
+                        <i class="fa-solid fa-user-lock"></i> Iniciar Sesión
+                    </a>
+                </div>
+                <!-- Logged In Container -->
+                <div class="user-menu-wrapper" id="user-menu-wrapper" style="display: none;">
+                    <a href="mi-cuenta.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-chart-line"></i> Mi Cuenta</a>
+                    <button type="button" class="btn-logout" id="logout-btn" title="Cerrar Sesión"><i class="fa-solid fa-power-off"></i></button>
+                </div>
+
+                <!-- Hamburger Menu for Mobile -->
+                <button type="button" class="mobile-menu-toggle" id="menu-toggle" aria-label="Abrir Menú">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobile-nav">
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav"><i class="fa-solid fa-xmark"></i></button>
+        <ul>
+            <li><a href="#" class="mobile-nav-link">Inicio</a></li>
+            <li><a href="#categories" class="mobile-nav-link">Categorías</a></li>
+            <li><a href="#bestsellers" class="mobile-nav-link">Más Vendidos</a></li>
+            <li><a href="#promo-pack" class="mobile-nav-link">Mega Pack</a></li>
+            <li><a href="#catalog" class="mobile-nav-link">Catálogo</a></li>
+            <li><a href="#testimonials" class="mobile-nav-link">Opiniones</a></li>
+            <li id="mobile-auth-li">
+                <a href="login.html" class="mobile-nav-link text-primary" id="mobile-login-btn"><i class="fa-solid fa-user-lock"></i> Iniciar Sesión</a>
+            </li>
+            <li id="mobile-dashboard-li" style="display: none;">
+                <a href="mi-cuenta.html" class="mobile-nav-link text-primary"><i class="fa-solid fa-chart-line"></i> Mi Cuenta</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg-wrapper">
+                <div class="hero-bg" style="background-image: linear-gradient(135deg, rgba(13, 27, 42, 0.95) 40%, rgba(13, 27, 42, 0.7) 100%), url('assets/hero_bg.png');"></div>
+            </div>
+            <div class="container hero-container-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">Archivos y Plantillas <span class="gradient-text">Listas para usar</span> en tus Proyectos</h1>
+                    <p class="hero-description">Recursos digitales para arquitectura e ingeniería. Ahorra tiempo en tus entregas con bloques AutoCAD, familias Revit, plantillas Excel de obra y materiales 3D — organizados, limpios y listos para descargar al instante.</p>
+                    <div class="hero-actions">
+                        <a href="#catalog" class="btn btn-primary btn-lg">Explorar Catálogo <i class="fa-solid fa-arrow-right"></i></a>
+                        <button type="button" class="btn btn-outline btn-lg" id="play-video-btn">
+                            <i class="fa-solid fa-circle-info"></i> ¿Cómo funciona?
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating Stats Bar (Steevlp Inspired) -->
+            <div class="hero-stats-wrapper">
+                <div class="container">
+                    <div class="hero-stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-num">15k+</span>
+                            <span class="stat-label">Descargas Exitosas</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">800+</span>
+                            <span class="stat-label">Recursos Premium</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">98%</span>
+                            <span class="stat-label">Calificaciones de 5★</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">24/7</span>
+                            <span class="stat-label">Descarga Inmediata</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bestsellers Section (Zona de Más Vendidos) -->
+        <section id="bestsellers" class="bestsellers-section section-padding dark-section">
+            <div class="container">
+                <div class="section-header text-center animate-on-scroll">
+                    <span class="section-subtitle text-primary">LOS MÁS DESCARGADOS</span>
+                    <h2 class="section-title text-white">Recursos Más Vendidos</h2>
+                    <p class="section-desc text-muted">Los archivos y plantillas que más arquitectos e ingenieros han descargado este mes.</p>
+                </div>
+
+                <div class="bestsellers-grid">
+                    <!-- Card 1 -->
+                    <div class="bestseller-card animate-on-scroll delay-1">
+                        <div class="card-img-holder">
+                            <span class="bs-rank">01</span>
+                            <span class="card-sold"><i class="fa-solid fa-fire"></i> 5,847 desc.</span>
+                            <img src="assets/autocad_pack.png" alt="Mega Pack AutoCAD">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-info-top">
+                                <span class="prod-category">AutoCAD</span>
+                            </div>
+                            <h3 class="prod-title">Mega Pack de Bloques 2D Dinámicos</h3>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span>(142 reseñas)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-pricing">
+                                    <span class="price-current">$19.99</span>
+                                    <span class="price-old">$45.00</span>
+                                    <span class="price-discount">−56%</span>
+                                </div>
+                                <button type="button" class="btn btn-primary buy-now-btn" data-id="p-1">
+                                    <i class="fa-solid fa-bolt"></i> Adquirir ahora
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 — Destacada -->
+                    <div class="bestseller-card featured-card animate-on-scroll delay-2">
+                        <div class="card-img-holder">
+                            <span class="bs-rank">02</span>
+                            <span class="card-sold"><i class="fa-solid fa-fire"></i> 3,210 desc.</span>
+                            <div class="featured-ribbon">MÁS VENDIDO</div>
+                            <img src="assets/revit_pack.png" alt="Librería Revit Familias">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-info-top">
+                                <span class="prod-category">Revit (BIM)</span>
+                            </div>
+                            <h3 class="prod-title">Librería Máster de Familias Paramétricas</h3>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span>(218 reseñas)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-pricing">
+                                    <span class="price-current">$29.99</span>
+                                    <span class="price-old">$79.00</span>
+                                    <span class="price-discount">−62%</span>
+                                </div>
+                                <button type="button" class="btn btn-primary buy-now-btn" data-id="p-2">
+                                    <i class="fa-solid fa-bolt"></i> Adquirir ahora
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bestseller-card animate-on-scroll delay-3">
+                        <div class="card-img-holder">
+                            <span class="bs-rank">03</span>
+                            <span class="card-sold"><i class="fa-solid fa-fire"></i> 2,094 desc.</span>
+                            <img src="assets/excel_pack.png" alt="Control de Obra Excel">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-info-top">
+                                <span class="prod-category">Excel</span>
+                            </div>
+                            <h3 class="prod-title">Bitácora y Plantilla de Control de Obra</h3>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                <span>(95 reseñas)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-pricing">
+                                    <span class="price-current">$14.99</span>
+                                    <span class="price-old">$29.99</span>
+                                    <span class="price-discount">−50%</span>
+                                </div>
+                                <button type="button" class="btn btn-primary buy-now-btn" data-id="p-3">
+                                    <i class="fa-solid fa-bolt"></i> Adquirir ahora
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories / Features Section -->
+        <section id="categories" class="categories-section section-padding">
+            <div class="container">
+                <div class="section-header text-center animate-on-scroll">
+                    <span class="section-subtitle">LO QUE ENCONTRARÁS</span>
+                    <h2 class="section-title">Todo Tipo de Archivos, Organizados por Área</h2>
+                    <p class="section-desc">Cada categoría cubre las herramientas más usadas por arquitectos, ingenieros y proyectistas en su trabajo diario.</p>
+                </div>
+
+                <div class="categories-grid">
+                    <!-- Category 1 -->
+                    <div class="category-card animate-on-scroll delay-1" data-category="autocad">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+                        <h3 class="category-name">Bloques AutoCAD</h3>
+                        <p class="category-desc">Librerías dinámicas, vegetación en planta/alzado, vehículos a escala y detalles constructivos estandarizados.</p>
+                        <a href="#catalog" class="category-link" data-filter="autocad">Ver productos <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <!-- Category 2 -->
+                    <div class="category-card animate-on-scroll delay-2" data-category="revit">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h3 class="category-name">Familias Revit (BIM)</h3>
+                        <p class="category-desc">Objetos paramétricos optimizados para no saturar tus modelos: mobiliario, luminarias y carpintería detallada.</p>
+                        <a href="#catalog" class="category-link" data-filter="revit">Ver productos <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <!-- Category 3 -->
+                    <div class="category-card animate-on-scroll delay-3" data-category="excel">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-table"></i>
+                        </div>
+                        <h3 class="category-name">Plantillas Excel</h3>
+                        <p class="category-desc">Hojas inteligentes para presupuestos de obra, generadores de acero, control de costos y cálculo estructural.</p>
+                        <a href="#catalog" class="category-link" data-filter="excel">Ver productos <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <!-- Category 4 -->
+                    <div class="category-card animate-on-scroll delay-4" data-category="texturas">
+                        <div class="category-icon-wrapper">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <h3 class="category-name">Texturas & Modelos 3D</h3>
+                        <p class="category-desc">Materiales fotorrealistas PBR (concreto, madera, metal) y modelos listos para SketchUp, V-Ray y Lumion.</p>
+                        <a href="#catalog" class="category-link" data-filter="texturas">Ver productos <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Pack / Split Section (Steevlp Inspired layout) -->
+        <section id="promo-pack" class="promo-pack-section section-padding">
+            <div class="container">
+                <div class="promo-grid">
+                    <!-- Left: Text and List -->
+                    <div class="promo-text-area animate-slide-left">
+                        <span class="promo-tag text-primary"><i class="fa-solid fa-gift"></i> OFERTA EXCLUSIVA POR TIEMPO LIMITADO</span>
+                        <h2 class="promo-title">Ahorra más del 60% con el Mega Pack Todo en Uno</h2>
+                        <p class="promo-description">Obtén acceso completo e inmediato a toda nuestra librería digital. El paquete definitivo que todo arquitecto independiente o estudio de ingeniería necesita en su arsenal diario.</p>
+                        
+                        <ul class="promo-features-list">
+                            <li>
+                                <div class="list-num">01</div>
+                                <div class="list-text">
+                                    <h4>Acceso y Actualizaciones de por Vida</h4>
+                                    <p>Descarga el contenido las veces que necesites directamente desde tu panel de usuario.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list-num">02</div>
+                                <div class="list-text">
+                                    <h4>Librería 100% Organizada y Curada</h4>
+                                    <p>Sin archivos duplicados ni corruptos. Capas limpias y bloques con nombres descriptivos.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list-num">03</div>
+                                <div class="list-text">
+                                    <h4>Soporte Técnico Especializado</h4>
+                                    <p>¿Problemas al cargar una familia de Revit o macro de Excel? Te ayudamos en menos de 2 horas desde tu ticket en el perfil.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="promo-cta-block">
+                            <button type="button" class="btn btn-primary btn-lg buy-now-btn" data-id="p-mega">
+                                <i class="fa-solid fa-bolt"></i> Comprar Mega Pack por $49.99
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Large Image with floating Glassmorphism pricing card -->
+                    <div class="promo-visual-area animate-slide-right">
+                        <div class="promo-img-wrapper" style="background-image: url('assets/hero_bg.png');">
+                            <!-- Glassmorphism Card -->
+                            <div class="glass-promo-card">
+                                <div class="glass-card-header">
+                                    <span class="badge-discount">-65% DTO.</span>
+                                    <h4>ARQUIPRO MASTER</h4>
+                                </div>
+                                <div class="glass-card-price">
+                                    <span class="current-price">$49.99</span>
+                                    <span class="original-price">$149.00 USD</span>
+                                </div>
+                                <p class="glass-card-text">Incluye AutoCAD Mega Pack, Revit Family Library, Plantillas Financieras de Obra y Texturas de Renderizado.</p>
+                                <button type="button" class="btn btn-secondary btn-full buy-now-btn" data-id="p-mega">
+                                    Adquirir Ahora
+                                </button>
+                                <div class="glass-card-footer">
+                                    <span><i class="fa-solid fa-shield-halved"></i> Pago 100% Seguro</span>
+                                    <span><i class="fa-solid fa-bolt"></i> Enlace Seguro MP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Catalog Section (Zona con Todo el Catálogo) -->
+        <section id="catalog" class="catalog-section section-padding light-section">
+            <div class="container">
+                <div class="section-header text-center animate-on-scroll">
+                    <span class="section-subtitle">TODOS LOS RECURSOS DISPONIBLES</span>
+                    <h2 class="section-title">Encuentra lo que Necesitas</h2>
+                    <p class="section-desc">Filtra por tipo de archivo o busca por nombre para dar con la solución exacta que tu proyecto requiere.</p>
+                </div>
+
+                <!-- Catalog Filtering Bar -->
+                <div class="catalog-toolbar">
+                    <div class="filter-buttons">
+                        <button type="button" class="filter-btn active" data-filter="all">Todos</button>
+                        <button type="button" class="filter-btn" data-filter="autocad">AutoCAD</button>
+                        <button type="button" class="filter-btn" data-filter="revit">Revit (BIM)</button>
+                        <button type="button" class="filter-btn" data-filter="excel">Excel</button>
+                        <button type="button" class="filter-btn" data-filter="texturas">Texturas & 3D</button>
+                    </div>
+                    
+                    <div class="catalog-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="catalog-search-input" placeholder="Filtrar por nombre o descripción...">
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="catalog-products-grid">
+                    <!-- Rendered dynamically by JS -->
+                </div>
+                
+                <!-- No Results State -->
+                <div class="no-results" id="no-results-message" style="display: none;">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <h3>No se encontraron recursos</h3>
+                    <p>Intenta buscando con otros términos o seleccionando otra categoría.</p>
+                    <button type="button" class="btn btn-outline" id="clear-filters-btn">Restablecer filtros</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section section-padding">
+            <div class="container">
+                <div class="section-header text-center animate-on-scroll">
+                    <span class="section-subtitle text-primary">OPINIONES REALES</span>
+                    <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+                    <p class="section-desc">Arquitectos e ingenieros que ya ahorran tiempo con nuestros archivos y plantillas.</p>
+                </div>
+
+                <div class="testimonials-slider">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card animate-on-scroll delay-1">
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"El Mega Pack de bloques de AutoCAD me ahorró literalmente semanas de trabajo en la planimetría de un centro comercial. Las capas vienen ordenadas y limpias, lo cual es rarísimo de encontrar."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div class="author-info">
+                                <h4 class="author-name">Arq. Alejandro Mendoza</h4>
+                                <p class="author-role">Director de Diseño en AM+Estudio</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card animate-on-scroll delay-2">
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"El material de Excel para obra es excelente. Las plantillas de control de costos y de presupuestos tienen una estructura sumamente sólida y detallada. Muy recomendable."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                            <div class="author-info">
+                                <h4 class="author-name">Ing. Sofía Carrillo</h4>
+                                <p class="author-role">Supervisora de Obra Civil</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card animate-on-scroll delay-3">
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Tenía dudas sobre cómo implementar las familias paramétricas de Revit y la atención al cliente me resolvió todo en poco tiempo de forma personalizada. Un gran servicio."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+                            <div class="author-info">
+                                <h4 class="author-name">Arq. Mateo Rivas</h4>
+                                <p class="author-role">Especialista BIM independiente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Banner Section -->
+        <section class="cta-banner-section">
+            <div class="cta-banner-bg" style="background-image: linear-gradient(90deg, rgba(13, 27, 42, 0.95) 30%, rgba(13, 27, 42, 0.5) 100%), url('assets/hero_bg.png');"></div>
+            <div class="container">
+                <div class="cta-banner-content">
+                    <h2>Empieza a Ahorrar Tiempo en tus Proyectos</h2>
+                    <p>Elige tu archivo o plantilla, paga con Mercado Pago y descárgalo al instante. Sin esperas, sin complicaciones.</p>
+                    <a href="#catalog" class="btn btn-secondary btn-lg">Ver todos los recursos <i class="fa-solid fa-bolt"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-top-grid">
+                <div class="footer-brand-info">
+                    <a href="#" class="brand-logo footer-logo">
+                        <img src="assets/logo.png" alt="ArquiPro Digital" class="brand-logo-img">
+                    </a>
+                    <p class="footer-desc">Recursos digitales listos para usar: archivos AutoCAD, familias Revit, plantillas Excel y materiales 3D para arquitectos e ingenieros.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#categories">Categorías</a></li>
+                        <li><a href="#bestsellers">Más Vendidos</a></li>
+                        <li><a href="#catalog">Catálogo Completo</a></li>
+                        <li><a href="#testimonials">Testimonios</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Nuestros Recursos</h4>
+                    <ul>
+                        <li><a href="#catalog" data-filter="autocad">Planos AutoCAD</a></li>
+                        <li><a href="#catalog" data-filter="revit">Objetos Revit</a></li>
+                        <li><a href="#catalog" data-filter="excel">Formatos de Presupuesto</a></li>
+                        <li><a href="#catalog" data-filter="texturas">Materiales Renderizado</a></li>
+                        <li><a href="#catalog">Todos los Recursos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Contacto & Soporte</h4>
+                    <p class="contact-item"><i class="fa-solid fa-envelope"></i> soporte@arquipro.digital</p>
+                    <p class="contact-item"><i class="fa-solid fa-phone"></i> +52 (55) 1234-5678</p>
+                    <p class="contact-item"><i class="fa-solid fa-location-dot"></i> Av. Arquitectura 450, CDMX, México</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 ARQUIPRO DIGITAL. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Políticas de Privacidad</a>
+                    <a href="#">Términos de Servicio</a>
+                    <a href="#">Políticas de Reembolso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal: ¿Cómo Funciona? -->
+    <div class="modal-overlay" id="hiw-overlay"></div>
+    <div class="hiw-modal" id="hiw-modal" role="dialog" aria-modal="true" aria-labelledby="hiw-title">
+        <button type="button" class="close-modal" id="close-hiw-btn" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="hiw-header">
+            <span class="hiw-badge"><i class="fa-solid fa-bolt"></i> Entrega instantánea</span>
+            <h2 id="hiw-title">¿Cómo funciona?</h2>
+            <p>Compra, paga y descarga tus recursos en menos de 2 minutos.</p>
+        </div>
+
+        <div class="hiw-steps">
+            <!-- Paso 1 -->
+            <div class="hiw-step">
+                <div class="hiw-step-icon hiw-icon-1">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="hiw-step-body">
+                    <span class="hiw-step-num">01</span>
+                    <h3>Elige tu recurso</h3>
+                    <p>Navega el catálogo y selecciona el pack que necesitas: bloques de AutoCAD, familias Revit, plantillas Excel o texturas 3D.</p>
+                </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="hiw-step">
+                <div class="hiw-step-icon hiw-icon-2">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="hiw-step-body">
+                    <span class="hiw-step-num">02</span>
+                    <h3>Pago seguro con MercadoPago</h3>
+                    <p>Acepta tarjetas de crédito/débito, OXXO, transferencia SPEI y más. Tu pago está 100% protegido por MercadoPago.</p>
+                </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="hiw-step">
+                <div class="hiw-step-icon hiw-icon-3">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="hiw-step-body">
+                    <span class="hiw-step-num">03</span>
+                    <h3>Entrega inmediata</h3>
+                    <p>En cuanto se confirma tu pago eres redirigido automáticamente a tu panel. Sin esperas, sin correos, sin procesos manuales.</p>
+                </div>
+            </div>
+
+            <!-- Paso 4 -->
+            <div class="hiw-step">
+                <div class="hiw-step-icon hiw-icon-4">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                </div>
+                <div class="hiw-step-body">
+                    <span class="hiw-step-num">04</span>
+                    <h3>Descarga siempre disponible</h3>
+                    <p>Tus archivos quedan en tu cuenta para siempre. Descárgalos las veces que quieras desde cualquier dispositivo.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hiw-footer">
+            <a href="#catalog" class="btn btn-primary" id="hiw-cta-btn">
+                Ver Catálogo Completo <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <p class="hiw-guarantee"><i class="fa-solid fa-circle-check"></i> Más de 2,400 arquitectos e ingenieros ya usan nuestros recursos</p>
+        </div>
+    </div>
+
+    <!-- Direct Checkout Backdrop & Modal -->
+    <div class="modal-overlay" id="checkout-overlay"></div>
+    <div class="checkout-modal" id="checkout-modal">
+        <button type="button" class="close-modal" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+        
+        <div class="checkout-grid">
+            <!-- Left Side: Product Summary -->
+            <div class="checkout-summary">
+                <h3>Resumen de Compra</h3>
+                <div class="checkout-prod-preview" id="checkout-prod-preview-card">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+            
+            <!-- Right Side: Details Form -->
+            <div class="checkout-form-area">
+                <h3>Detalles de Facturación</h3>
+                <p class="checkout-subtitle">Tus recursos digitales se activarán inmediatamente después del pago.</p>
+                
+                <!-- If not logged in, suggest log in -->
+                <div class="checkout-auth-alert" id="checkout-auth-alert">
+                    <p><i class="fa-solid fa-circle-info"></i> ¿Ya tienes una cuenta? <a href="login.html" id="checkout-trigger-login">Inicia sesión</a> para auto-completar y asociar tu compra.</p>
+                </div>
+
+                <form id="checkout-direct-form">
+                    <div class="form-group">
+                        <label for="checkout-name">Nombre Completo</label>
+                        <input type="text" id="checkout-name" required placeholder="Ing. Juan Pérez">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="checkout-email">Correo Electrónico</label>
+                        <input type="email" id="checkout-email" required placeholder="correo@ejemplo.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="checkout-phone">Teléfono / WhatsApp</label>
+                        <input type="tel" id="checkout-phone" required placeholder="55 1234 5678">
+                    </div>
+
+                    <div class="checkout-payment-methods">
+                        <h4>Método de Pago</h4>
+                        <div class="payment-method-selector active">
+                            <i class="fa-solid fa-credit-card text-primary"></i>
+                            <span>Mercado Pago (Tarjeta, OXXO, Transferencia)</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-secondary btn-full" id="checkout-submit-btn">
+                        Proceder al Pago con Mercado Pago <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    </button>
+                    
+                    <div class="checkout-security-footer">
+                        <span><i class="fa-solid fa-shield-halved"></i> Transacción segura cifrada SSL</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <div id="whatsapp-widget-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
