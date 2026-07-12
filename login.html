@@ -97,7 +97,8 @@
                     window.location.href = "mi-cuenta.html";
                 } catch (error) {
                     console.error("Login error:", error);
-                    errorMessage.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${error.message || 'Error al iniciar sesión.'}`;
+                    errorMessage.textContent = error.message || 'Error al iniciar sesión.';
+                    errorMessage.prepend(Object.assign(document.createElement('i'), { className: 'fa-solid fa-circle-xmark' }));
                     errorBanner.style.display = "block";
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = 'Ingresar <i class="fa-solid fa-right-to-bracket"></i>';

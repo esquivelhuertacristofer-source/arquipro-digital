@@ -33,7 +33,7 @@
             
             <!-- Account Autocreated Info Banner (If applicable) -->
             <div class="checkout-auth-alert" id="auto-account-banner" style="display: none; background-color: rgba(37, 150, 190, 0.08); border-color: rgba(37, 150, 190, 0.25); text-align: left; margin-bottom: 2rem;">
-                <p style="color: var(--secondary);"><i class="fa-solid fa-user-check"></i> <strong>¡Cuenta Creada!</strong> Hemos registrado tu acceso con tu correo. Tu contraseña temporal de ingreso es <strong>123456</strong>. Puedes cambiarla desde tu perfil.</p>
+                <p style="color: var(--secondary);"><i class="fa-solid fa-user-check"></i> <strong>¡Cuenta Creada!</strong> Hemos registrado tu acceso con tu correo. Tu contraseña temporal de ingreso es <strong id="temp-password-val">-</strong>. Cámbiala desde tu perfil al ingresar.</p>
             </div>
 
             <div class="receipt-details">
@@ -92,10 +92,18 @@
         document.addEventListener("DOMContentLoaded", async () => {
             const urlParams = new URLSearchParams(window.location.search);
 
+            // SEGURIDAD: verificar que MercadoPago envió un pago real
+            const collectionStatus = urlParams.get("collection_status") || urlParams.get("status");
+            const paymentId = urlParams.get("payment_id") || urlParams.get("collection_id");
+            if (!paymentId || (collectionStatus && collectionStatus !== "approved")) {
+                window.location.href = "pago-fallido.html" + window.location.search;
+                return;
+            }
+
             // external_reference = nuestro orderId interno (fijado en app.js antes de redirigir a MP)
             // payment_id / collection_id = ID de pago asignado por MercadoPago
             const orderId = urlParams.get("external_reference") || urlParams.get("collection_id") || ("AQ-" + Math.floor(10000 + Math.random() * 90000));
-            const mpPaymentId = urlParams.get("payment_id") || urlParams.get("collection_id") || orderId;
+            const mpPaymentId = paymentId;
 
             // El productId se guardó en localStorage justo antes de iniciar el checkout
             const productId = localStorage.getItem("arquipro_last_pending_product") || "p-1";
@@ -116,8 +124,10 @@
                 if (tempBuyerData) {
                     const buyer = JSON.parse(tempBuyerData);
                     try {
-                        // Crear la cuenta con contraseña por defecto
-                        currentUser = await ArquiProDB.auth.signUp(buyer.email, "123456", buyer.name, buyer.phone);
+                        // Contraseña temporal aleatoria (se muestra al usuario en el banner)
+                        const tempPassword = crypto.randomUUID().replace(/-/g, '').slice(0, 12);
+                        document.getElementById("temp-password-val").textContent = tempPassword;
+                        currentUser = await ArquiProDB.auth.signUp(buyer.email, tempPassword, buyer.name, buyer.phone);
                         autoCreated = true;
                         document.getElementById("auto-account-banner").style.display = "block";
                     } catch (error) {

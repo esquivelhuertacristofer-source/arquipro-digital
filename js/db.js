@@ -62,20 +62,7 @@ const ArquiProDB = {
                 if (error) throw error;
                 
                 if (data && data.user) {
-                    // Crear perfil en la tabla profiles
-                    const { error: profileError } = await supabaseClient
-                        .from('profiles')
-                        .insert({
-                            id: data.user.id,
-                            name: name,
-                            phone: phone,
-                            profession: 'Arquitecto'
-                        });
-                    
-                    if (profileError) {
-                        console.error("Error creating profile:", profileError);
-                    }
-                    
+                    // El trigger handle_new_user() en Supabase crea el perfil automáticamente
                     const sessionUser = {
                         id: data.user.id,
                         email: data.user.email,

@@ -107,7 +107,8 @@
                     window.location.href = "mi-cuenta.html";
                 } catch (error) {
                     console.error("Signup error:", error);
-                    errorMessage.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${error.message || 'Error al crear la cuenta.'}`;
+                    errorMessage.textContent = error.message || 'Error al crear la cuenta.';
+                    errorMessage.prepend(Object.assign(document.createElement('i'), { className: 'fa-solid fa-circle-xmark' }));
                     errorBanner.style.display = "block";
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = 'Registrarme <i class="fa-solid fa-user-plus"></i>';

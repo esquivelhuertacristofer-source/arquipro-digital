@@ -578,8 +578,6 @@ async function handleCheckoutSubmit(e) {
                 },
                 body: JSON.stringify({
                     productId: selectedProductForCheckout.id,
-                    productName: selectedProductForCheckout.name,
-                    price: selectedProductForCheckout.price,
                     orderId: orderId,
                     payer: {
                         name,
@@ -608,11 +606,9 @@ async function handleCheckoutSubmit(e) {
             }
         } catch (error) {
             console.error("Mercado Pago Error:", error);
-            alert("No se pudo iniciar el portal de pago seguro de Mercado Pago: " + error.message + "\n\nSe conmutará automáticamente a modo simulación demo para esta sesión.");
-
-            setTimeout(() => {
-                window.location.href = `pago-exitoso.html?payment_id=${orderId}&collection_status=approved&external_reference=${orderId}`;
-            }, 1000);
+            elements.checkoutSubmitBtn.disabled = false;
+            elements.checkoutSubmitBtn.innerHTML = `Proceder al Pago <i class="fa-solid fa-lock"></i>`;
+            alert("No se pudo conectar con el portal de pago seguro. Verifica tu conexión e intenta de nuevo.\n\n" + error.message);
         }
     }
 }

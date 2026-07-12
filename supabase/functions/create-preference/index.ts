@@ -10,6 +10,23 @@ const MP_ACCESS_TOKEN = Deno.env.get("MERCADOPAGO_ACCESS_TOKEN") ?? "";
 const SITE_URL = Deno.env.get("SITE_URL") ?? "https://arquipro.digital";
 const CURRENCY_ID = Deno.env.get("CURRENCY_ID") ?? "MXN";
 
+// Catálogo canónico de precios — el cliente nunca puede manipular el precio
+const PRODUCT_CATALOG: Record<string, { name: string; price: number }> = {
+  "p-1":    { name: "Mega Pack de Bloques 2D Dinámicos",              price: 19.99 },
+  "p-2":    { name: "Librería Máster de Familias Paramétricas",       price: 29.99 },
+  "p-3":    { name: "Bitácora y Plantilla de Control de Obra",        price: 14.99 },
+  "p-4":    { name: "Pack de Materiales PBR Hormigón & Concreto",     price: 12.50 },
+  "p-5":    { name: "Diseño de Zapatas y Columnas de Concreto",       price: 18.99 },
+  "p-6":    { name: "Plantilla Planos Municipales Normalizada",        price: 12.00 },
+  "p-7":    { name: "Plantilla de Proyecto Residencial BIM (LOD 300)",price: 25.00 },
+  "p-8":    { name: "Generador de Números de Acero y Concreto",       price: 10.50 },
+  "p-9":    { name: "Detalles Constructivos de Cimentaciones",        price: 15.00 },
+  "p-10":   { name: "Familias MEP: Instalaciones Hidrosanitarias",    price: 18.50 },
+  "p-11":   { name: "Colección de Vegetación 3D para Lumion & V-Ray", price: 22.00 },
+  "p-12":   { name: "Pack de Texturas de Maderas Finas y Acabados",   price:  9.99 },
+  "p-mega": { name: "Mega Pack Todo en Uno ARQUIPRO MASTER",          price: 49.99 },
+};
+
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -37,8 +54,6 @@ serve(async (req) => {
 
   let body: {
     productId: string;
-    productName: string;
-    price: number;
     orderId?: string;
     payer?: { name: string; email: string; phone?: string; userId?: string };
     redirectUrls?: { success?: string; failure?: string; pending?: string };
@@ -53,14 +68,19 @@ serve(async (req) => {
     });
   }
 
-  const { productId, productName, price, orderId, payer, redirectUrls } = body;
+  const { productId, orderId, payer, redirectUrls } = body;
 
-  if (!productId || !productName || !price || price <= 0) {
-    return new Response(JSON.stringify({ error: "Datos de producto incompletos o inválidos." }), {
+  // Validar producto contra catálogo canónico — el precio viene del servidor, no del cliente
+  const product = PRODUCT_CATALOG[productId];
+  if (!product) {
+    return new Response(JSON.stringify({ error: "Producto no reconocido." }), {
       status: 400,
       headers: { "Content-Type": "application/json", ...CORS_HEADERS },
     });
   }
+
+  const canonicalPrice = product.price;
+  const canonicalName  = product.name;
 
   const successUrl = redirectUrls?.success ?? `${SITE_URL}/pago-exitoso.html`;
   const failureUrl = redirectUrls?.failure ?? `${SITE_URL}/pago-fallido.html`;
@@ -70,12 +90,12 @@ serve(async (req) => {
     items: [
       {
         id: productId,
-        title: productName,
-        description: `Recurso digital profesional — ${productName}`,
+        title: canonicalName,
+        description: `Recurso digital profesional — ${canonicalName}`,
         category_id: "others",
         currency_id: CURRENCY_ID,
         quantity: 1,
-        unit_price: parseFloat(String(price)),
+        unit_price: canonicalPrice,
       },
     ],
     ...(payer?.email && {
@@ -96,7 +116,6 @@ serve(async (req) => {
       pending: pendingUrl,
     },
     auto_return: "approved",
-    // external_reference = nuestro orderId interno para reconciliar el pago
     external_reference: orderId ?? productId,
     statement_descriptor: "ARQUIPRO DIGITAL",
     ...(payer?.userId && {
@@ -119,7 +138,7 @@ serve(async (req) => {
     if (!mpRes.ok) {
       console.error("MercadoPago API error:", JSON.stringify(mpData));
       return new Response(
-        JSON.stringify({ error: "Error al crear la preferencia en MercadoPago.", details: mpData }),
+        JSON.stringify({ error: "Error al crear la preferencia en MercadoPago. Intenta de nuevo." }),
         {
           status: mpRes.status,
           headers: { "Content-Type": "application/json", ...CORS_HEADERS },
@@ -130,8 +149,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         preferenceId: mpData.id,
-        init_point: mpData.init_point,         // URL de producción (pago real)
-        sandbox_init_point: mpData.sandbox_init_point, // URL de prueba/sandbox
+        init_point: mpData.init_point,
+        sandbox_init_point: mpData.sandbox_init_point,
       }),
       {
         status: 200,

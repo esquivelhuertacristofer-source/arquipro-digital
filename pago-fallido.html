@@ -64,12 +64,12 @@
             const urlParams = new URLSearchParams(window.location.search);
             
             // Intentar recuperar el ID de orden fallida
-            const orderId = urlParams.get("preference_id") || "AQ-" + Math.floor(10000 + Math.random() * 90000);
+            const orderId = urlParams.get("external_reference") || "AQ-" + Math.floor(10000 + Math.random() * 90000);
             document.getElementById("err-order-id").textContent = orderId;
 
             // Conciliar fallo en Supabase/local DB
             try {
-                await ArquiProDB.orders.updateStatus(orderId, 'failed', 'MP-FAILED-TRX');
+                await ArquiProDB.orders.updateStatus(orderId, 'rejected', 'MP-REJECTED-TRX');
             } catch (err) {
                 console.error("Error conciliated failure status:", err);
             }
