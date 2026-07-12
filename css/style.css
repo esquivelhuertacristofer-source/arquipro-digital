@@ -3387,7 +3387,7 @@ input, button, select, textarea {
    FAQ SECTION
    ========================================================================== */
 .faq-section {
-    background-color: var(--bg-dark);
+    background-color: var(--bg-dark-deep);
 }
 
 .faq-grid {
